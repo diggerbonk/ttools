@@ -1,0 +1,28 @@
+TTNetwork
+
+TTNetwork is a library for writing network aware applications that 
+need to handle multiple socket connections concurrently.  It is 
+optimized for asynchronous protocols, that is, protocols where data 
+flows bidirectionally.  It is well suited for high throughput 
+applications such as media streaming, as well as its original purpose, 
+P2P applications.
+
+Where TTNetwork excels:
+
+   - Long term rather than short term connections
+   - High throughput applications
+   - Asynchronous protocols
+
+Design Goals:
+
+   - Simple to use API that hides implementation details from the user. 
+     In particular, I wanted to hide the synchronization issues 
+     involved in managing multiple concurrent threads.  This allows 
+     some flexibility in architecture (if, for instance, I decide later 
+     to add a single threaded version of the library, it would 
+     still work in much the same manner).
+   - Handle two-way protocols well - where there is data streaming 
+     in both directions on a single socket ( like instant messaging, 
+     P2P ).
+   - Portability: Compile on multiple platforms, multiple compilers.
+   - 

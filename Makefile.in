@@ -1,0 +1,50 @@
+#
+# BUILD TOOLS
+
+MAKE = gmake
+CC = g++
+
+#
+# INCLUDES
+
+INCLUDES = -I../
+
+#
+# LIBS
+
+LIBS = $(TT_THREAD_LIB)
+
+#
+# FLAGS
+
+CFLAGS =  $(TT_CFLAGS) $(INCLUDES)
+
+#
+# OBJECTS
+
+OBJECTS = tt_async_socket.o tt_buffer.o tt_functions.o tt_hashtable.o \
+        tt_linked_list.o tt_listener.o tt_mutex.o tt_network.o tt_semaphore.o \
+        tt_socket.o tt_notify.o
+
+#
+# BUILD TARGETS
+
+.SUFFIXES: .c .cpp .o
+
+.cpp.o:
+	$(CC) $(CFLAGS)  -c $^ -o $@
+
+all: lib testapp
+ 
+lib: $(OBJECTS)
+	ar cru libtt.a $(OBJECTS)
+	ranlib libtt.a
+        
+testapp: $(OBJECTS) test.cpp
+	$(CC) $(CFLAGS) -o testapp test.cpp $(OBJECTS) $(LIBS)
+
+clean:
+	rm -f *.o
+	rm -f libtt.a
+	rm -f testapp
+
