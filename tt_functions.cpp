@@ -5,6 +5,7 @@
 // Set of functions used in the tt library.
 
 #include <iostream>
+#include <cstring>
 #include <stdio.h> // for sprintf
 #include <stdarg.h> // for char * fmt ...
 
